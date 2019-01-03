@@ -1,25 +1,25 @@
 const { Movie } = require('./movie');
 
-const amountFor = function (item) {
-    let thisAmount = 0;
-    switch (item.movie.priceCode){
-        case Movie.REGULAR : 
-            thisAmount += 2;
-            if(item.daysRented > 2){
-                thisAmount += (item.daysRented - 2) * 1.5
+const amountFor = function (aRental) {
+    let result = 0;
+    switch (aRental.movie.priceCode) {
+        case Movie.REGULAR:
+            result += 2;
+            if (aRental.daysRented > 2) {
+                result += (aRental.daysRented - 2) * 1.5
             }
             break;
-        case Movie.NEW_RELEASE :
-            thisAmount += item.daysRented * 3;
+        case Movie.NEW_RELEASE:
+            result += aRental.daysRented * 3;
             break;
-        case Movie.CHILDREN : 
-            thisAmount +=1.5;
-            if(item.daysRented > 3){
-                thisAmount += (item.daysRented - 3) * 1.5
+        case Movie.CHILDREN:
+            result += 1.5;
+            if (aRental.daysRented > 3) {
+                result += (aRental.daysRented - 3) * 1.5
             }
             break;
     }
-    return thisAmount;
+    return result;
 }
 export class Customer {
     constructor(name) {

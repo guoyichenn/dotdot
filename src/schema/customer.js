@@ -1,4 +1,26 @@
-const {Movie} = require('./movie');
+const { Movie } = require('./movie');
+
+const amountFor = function (item) {
+    let thisAmount = 0;
+    switch (item.movie.priceCode){
+        case Movie.REGULAR : 
+            thisAmount += 2;
+            if(item.daysRented > 2){
+                thisAmount += (item.daysRented - 2) * 1.5
+            }
+            break;
+        case Movie.NEW_RELEASE :
+            thisAmount += item.daysRented * 3;
+            break;
+        case Movie.CHILDREN : 
+            thisAmount +=1.5;
+            if(item.daysRented > 3){
+                thisAmount += (item.daysRented - 3) * 1.5
+            }
+            break;
+    }
+    return thisAmount;
+}
 export class Customer {
     constructor(name) {
         this.name = name;
@@ -19,34 +41,18 @@ export class Customer {
         let frequentRenterPoints = 0;
         let rentals = this.rentals;
         let result = " Rental Record for " + this.name + " \n ";
-        rentals.forEach(item =>{
+        rentals.forEach(item => {
             let thisAmount = 0;
-            switch (item.movie.priceCode){
-                case Movie.REGULAR : 
-                    thisAmount += 2;
-                    if(item.daysRented > 2){
-                        thisAmount += (item.daysRented - 2) * 1.5
-                    }
-                    break;
-                case Movie.NEW_RELEASE :
-                    thisAmount += item.daysRented * 3;
-                    break;
-                case Movie.CHILDREN : 
-                    thisAmount +=1.5;
-                    if(item.daysRented > 3){
-                        thisAmount += (item.daysRented - 3) * 1.5
-                    }
-                    break;
-            }
+            thisAmount = amountFor(item);
             frequentRenterPoints++;
-            if((item.movie.priceCode == Movie.NEW_RELEASE) && item.daysRented > 1){
+            if ((item.movie.priceCode == Movie.NEW_RELEASE) && item.daysRented > 1) {
                 frequentRenterPoints++;
             }
             result += ' \t ' + item.movie.title + " \t " + thisAmount + " \n ";
-            totalAmount += thisAmount; 
+            totalAmount += thisAmount;
         })
-        result += " Amount owed is " + totalAmount + " \n " ;
+        result += " Amount owed is " + totalAmount + " \n ";
         result += " You earned " + frequentRenterPoints + " frequent renter points ";
-        return result; 
+        return result;
     }
 }

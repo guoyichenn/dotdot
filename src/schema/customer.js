@@ -1,4 +1,3 @@
-const { Movie } = require('./movie');
 export class Customer {
     constructor(name) {
         this.name = name;
@@ -15,20 +14,32 @@ export class Customer {
      * 生成详单
      */
     async statement() {
-        let totalAmount = 0;
-        let frequentRenterPoints = 0;
         let rentals = this.rentals;
         let result = " Rental Record for " + this.name + " \n ";
         rentals.forEach(item => {
-            frequentRenterPoints++;
-            if ((item.movie.priceCode == Movie.NEW_RELEASE) && item.daysRented > 1) {
-                frequentRenterPoints++;
-            }
             result += ' \t ' + item.movie.title + " \t " + item.getCharge() + " \n ";
-            totalAmount += item.getCharge();
         })
-        result += " Amount owed is " + totalAmount + " \n ";
-        result += " You earned " + frequentRenterPoints + " frequent renter points ";
+        result += " Amount owed is " + this.getTotalCharge() + " \n ";
+        result += " You earned " + this.getTotalFrequentRenterPoints() + " frequent renter points ";
         return result;
     }
+    getTotalCharge(){
+        let result = 0; 
+        if(this.rentals && this.rentals.length){
+            this.rentals.forEach(item =>{
+                result += item.getCharge();
+            })
+        };
+        return result;
+    }
+    getTotalFrequentRenterPoints(){
+        let result = 0; 
+        if(this.rentals && this.rentals.length){
+            this.rentals.forEach(item =>{
+                result += item.getFrequentRenterPoints();
+            })
+        };
+        return result;
+    }
+    
 }

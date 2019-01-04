@@ -11,7 +11,11 @@
  *     适应新家意味着要去掉参数，此外，我还要在搬移的同时变更函数名称
  *     本例之中，这个步骤很简单，因为我刚才产生的新函数，只有一个地方使用了，一般情况下，你得在可能运用该函数的说有类中查找一遍
  *  4.replace temp with query 变量 thisAmount 显得有点多余了，临时变量多余会导致大量参数传来传去，很容易跟丢他们
- *  
+ *  5.同样的步骤 处理积分部分计算 extarct_method-> move_method
+ *      replace_temp_with_query 两个计算总量的变量显得有点多余，
+ *      我们用Customer类中 getTotalCharge（）代替 totalAmount,由于totalAmount在循环内被赋值，不得不把循环也复制到查询函数中
+ *      同样对frequentRenterPoints变量也做同样的处理
+ *                                                                          
  *  
  * 
  * 

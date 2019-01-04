@@ -26,4 +26,11 @@ export class Rental {
     }
     return result;
   }
+  getFrequentRenterPoints() {
+    if ((this.movie.priceCode == Movie.NEW_RELEASE) && this.daysRented > 1) {
+      return 2;
+    } else {
+      return 1;
+    }
+  }
 }

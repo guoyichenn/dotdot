@@ -20,14 +20,12 @@ export class Customer {
         let rentals = this.rentals;
         let result = " Rental Record for " + this.name + " \n ";
         rentals.forEach(item => {
-            let thisAmount = 0;
-            thisAmount = item.getCharge();
             frequentRenterPoints++;
             if ((item.movie.priceCode == Movie.NEW_RELEASE) && item.daysRented > 1) {
                 frequentRenterPoints++;
             }
-            result += ' \t ' + item.movie.title + " \t " + thisAmount + " \n ";
-            totalAmount += thisAmount;
+            result += ' \t ' + item.movie.title + " \t " + item.getCharge() + " \n ";
+            totalAmount += item.getCharge();
         })
         result += " Amount owed is " + totalAmount + " \n ";
         result += " You earned " + frequentRenterPoints + " frequent renter points ";

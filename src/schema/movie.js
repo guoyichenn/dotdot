@@ -25,6 +25,9 @@ export class Movie {
   getCharge(daysRented){
     return this.price.getCharge(daysRented);
   }
+  getFrequentRenterPoints(daysRented){
+    return this.price.getFrequentRenterPoints(daysRented);
+  }
 }
 Movie.CHILDRENS = 2;
 Movie.REGULAR = 0;

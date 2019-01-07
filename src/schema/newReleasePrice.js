@@ -12,4 +12,7 @@ export class NewReleasePrice extends Price {
         result += daysRented * 3;
         return result;
     }
+    getFrequentRenterPoints(daysRented){
+        return (daysRented > 1) ? 2 : 1
+    }
 }

@@ -27,6 +27,8 @@
  *  2.move method - 将switch语句移到price类
  *      把 rental 类中计算charge的方法搬移到movie类中
  *  3.replace Conditional with Polymorphism - 去掉switch 语句 
+ *  
+ *  4.同样的方式来处理积分
  *                                                                          
  *  
  * 

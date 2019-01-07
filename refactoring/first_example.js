@@ -15,6 +15,18 @@
  *      replace_temp_with_query 两个计算总量的变量显得有点多余，
  *      我们用Customer类中 getTotalCharge（）代替 totalAmount,由于totalAmount在循环内被赋值，不得不把循环也复制到查询函数中
  *      同样对frequentRenterPoints变量也做同样的处理
+ * 
+ * 
+ * 
+ * step3 运用多态取代与价格相关的条件逻辑
+ *  在movie类中，有多种影片类型，其计算价格方式也不会相同，所以我们可以用子类的方式，建立3个movie的子类
+ *  这么以来就可以用多态来取代switch语句了，但是一部影片可以在自己生命周期内修改自己的分类，一个对象却不能
+ *  于是还有一种解决方式 state模式
+ *  1.replace type Code With state/Strategy - 将类型相关的行为搬移到state模式内
+ *      第一步骤是针对代码使用self Encapsulate Field（自封装字段）
+ *  2.move method - 将switch语句移到price类
+ *      把 rental 类中计算charge的方法搬移到movie类中
+ *  3.replace Conditional with Polymorphism - 去掉switch 语句 
  *                                                                          
  *  
  * 

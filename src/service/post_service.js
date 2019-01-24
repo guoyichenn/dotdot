@@ -16,7 +16,7 @@ module.exports = class extends think.Service {
             start += 15
             resultList = await that.httpForPost(user_id, start)
         }
-        return result;
+        return result.reverse();
 
     }
     async httpForPost(user_id, start) {
